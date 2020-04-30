@@ -3,6 +3,12 @@
 
 import re , pyperclip
 
+# user guid
+print('Copy your text so it saves into clipboard')
+user_response = input('Are you ready? y=\'yes\' n=\'no\' :')
+while str(user_response).lower() != 'y':
+    user_response = input("Make sure type 'y' when you copied your desired text :")
+
 # take text from clipboard
 sample_string = str(pyperclip.paste())
 
@@ -14,5 +20,10 @@ emails_string = ''
 if len(emails_list) > 0:
     for email in emails_list:
         emails_string += email + '\n'
-
-print(emails_string)
+    pyperclip.copy(emails_string)
+    print('\nThese email addresses copied to your clipboard so you can paste it anywhere')
+    print('All email addresses available in your desired text')
+    print(emails_string)
+else:
+    print('\nThere is no email address in your desired text')
+    print('Or maybe you just forgot to copy your desired text')
