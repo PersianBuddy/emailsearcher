@@ -1,14 +1,18 @@
 #! Python 3
 # main.py - finds all email addresses
 
-import re
-sample_string = 'sdfhk , ckxdf fsds23fm@sd32f.cowefsdfsd3m dskf sdf@gmail.com sfjskdj'
+import re , pyperclip
 
-# TODO: create email regular expretion
-phone_reg_ex = re.compile('[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}', re.VERBOSE)
+# take text from clipboard
+sample_string = str(pyperclip.paste())
 
-# TODO: Find matches
-result = re.findall(phone_reg_ex,sample_string)
+phone_reg_ex = re.compile('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}', re.VERBOSE)
 
-# TODO: show mathces or export them in a file
-print(result)
+emails_list = re.findall(phone_reg_ex, sample_string)
+# convert list of emails to a string of emails
+emails_string = ''
+if len(emails_list) > 0:
+    for email in emails_list:
+        emails_string += email + '\n'
+
+print(emails_string)
